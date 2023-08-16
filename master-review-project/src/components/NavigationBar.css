@@ -1,9 +1,0 @@
-.navbar {
-    display: flex;
-    width: 100vw;
-    height: 8vh;
-}
-
-Link.sign-in-btn {
-    background-color: red;
-}
