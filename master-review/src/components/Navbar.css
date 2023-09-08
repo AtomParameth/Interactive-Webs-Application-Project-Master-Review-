@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    font-family: 'Inter' , sans-serif;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 20%;
+}
+
+.sign-in {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    right: 20%;
+}
+
+.sign-button {
+    background-color: white;
+    width: 7.5rem;
+    height: 2.8125rem;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: rgba(51, 132, 253, 1);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.03125rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sign-button:hover {
+    background-color: rgba(51, 132, 253, 1);
+    color: white;
+}
+
+.sign-button:active {
+    background-color: rgba(28, 89, 180, 1);
+    color: rgba(227, 227, 227, 1);
+}

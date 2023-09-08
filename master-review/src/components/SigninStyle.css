@@ -1,0 +1,5 @@
+.background {
+    background-size: cover;
+    background-image: url("./images/signin-background.svg");
+    width: 100%;
+}
