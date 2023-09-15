@@ -7,13 +7,15 @@ import SigninPage from './components/SigninPage';
 import './App.css'
 
 
+
+
 const router = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: <LandingPage />
   },
   {
-    path:"/sign-in",
+    path: "/sign-in",
     element: <SigninPage />
   }
 ])
@@ -21,7 +23,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
