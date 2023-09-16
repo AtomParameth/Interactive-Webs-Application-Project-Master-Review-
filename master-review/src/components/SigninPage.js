@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import "./SigninStyle.css"
+import LandingPage from "./LandingPage";
 
 
 function SigninPage() {

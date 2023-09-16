@@ -17,7 +17,7 @@ nav {
     display: flex;
     align-items: center;
     position: relative;
-    left: 20%;
+    left: 20;
 }
 
 .sign-in {
@@ -25,7 +25,7 @@ nav {
     align-items: center;
     position: relative;
     justify-content: center;
-    right: 20%;
+    right: 20;
 }
 
 .sign-button {
