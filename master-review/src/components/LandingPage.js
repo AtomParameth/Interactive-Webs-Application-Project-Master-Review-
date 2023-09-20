@@ -21,7 +21,7 @@ function LandingPage() {
         <h1>Trending</h1>
         <Carousel swipeable={false} draggable={false} showDots={true} responsive={responsive}>
           {poster}
-        </Carousel>;
+        </Carousel>
       </div>
     </>
   );
