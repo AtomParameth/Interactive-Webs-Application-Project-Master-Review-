@@ -7,8 +7,8 @@
   height: 100vh;
   display: flex;
   background: url("./images/background-signIn.jpg");
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
+  justify-content: center; 
+  align-items: center; 
   background-size: cover;
 }
 
@@ -20,9 +20,9 @@
   background-color: white;
   color: black;
   display: flex;
-  flex-direction: column; /* Center children vertically */
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
   border-radius: 1em;
   text-align: center;
   width: 425px;
@@ -96,13 +96,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer; /* Add a pointer cursor for interaction */
+  cursor: pointer; 
 }
 
 .close-button:hover {
   background-image: url("./images/close-button-hover.svg") no-repeat center
     center;
-  transition: background-image 0.3s ease-in-out; /* Smooth transition for background image */
+  transition: background-image 0.3s ease-in-out; 
 }
 
 .google-logo-img {
