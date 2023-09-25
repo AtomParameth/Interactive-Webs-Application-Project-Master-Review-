@@ -17,17 +17,20 @@ nav {
   margin: 0 auto;
 }
 
+
 .logo {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
+  justify-content: flex-start;
+  padding: 0 0 0 12rem;
 }
 
 .sign-in {
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
+  justify-content: flex-end;
+  padding: 0 12rem 0 0;
 }
 
 .sign-button {
@@ -87,8 +90,9 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0;
+  padding: 0 12rem;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .profile {
@@ -96,4 +100,17 @@ nav {
   align-items: center;
   margin: 0 auto;
   padding: 0;
+}
+
+.profile:hover {
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+}
+
+.searchBar-position{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12rem;
+  margin: 0 auto;
+  width: 100%;
 }

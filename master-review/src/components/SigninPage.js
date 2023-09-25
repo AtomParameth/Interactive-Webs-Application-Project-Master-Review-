@@ -3,7 +3,6 @@ import "./SigninStyle.css";
 import { auth } from "../firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState, useEffect } from "react";
-import Navbar from "./Navbar";
 import logo from "./images/logo-roject.svg";
 import { Link } from "react-router-dom";
 import closeBtn from "./images/close-button-default.svg";

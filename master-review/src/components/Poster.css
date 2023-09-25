@@ -1,47 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  h1 {
-    margin: 1rem auto 4rem;
-  }
-  
-  .poster--image {
-    width: 100%;
-    height: 20em;
-    object-fit: cover;
-  }
-  
-  .poster {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 320px;
-    margin: auto 1rem;
-    text-align: center;
-    font-family: arial;
-  }
-  
-  .name {
-    color: grey;
-    font-size: 22px;
-  }
-  
-  .detail button {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
-  
-  .detail button:hover {
-    opacity: 0.7;
-  }
+.slide-container {
+  padding: 0% 10%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: larger;
+  margin: 1rem auto 1.5rem;
+}
+
+.poster--image {
+  width: 100%;
+  height: 18em;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+.poster {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: arial;
+  border-radius: 1rem;
+}
+
+.name {
+  color: grey;
+  font-size: 22px;
+}
+
+.detail button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 0 0 16px 16px;
+}
+
+.detail button:hover {
+  opacity: 0.7;
+}

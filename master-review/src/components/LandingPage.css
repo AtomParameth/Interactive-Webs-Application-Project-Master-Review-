@@ -1,0 +1,12 @@
+@media screen and (max-width: 600px) {
+  * {
+    max-width: 1920px;
+    min-width: 400px;
+  }
+
+  .pic {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}

@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "./images/logo-roject.svg";
 import "./Navbar.css";
 import { useState, useEffect } from "react";
-import { auth } from "../firebase"; 
+import { auth } from "../firebase";
+import DropdownMenu from "./DropMenu";
+import "./SearchBar.css";
+import SearchBar from "./SearchBar";
+
 function Navbar() {
   const [user, setUser] = useState(null);
+  const [showdropdown, setShowdropdown] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -16,43 +21,44 @@ function Navbar() {
   }, []);
 
   return (
-    <nav>
-      <div className="logo">
-        <Link to="/">
-          <img src={logo} alt="Logo" />
-        </Link>
-      </div>
-      <div>
-        {user ? (
-          <div className="profile-user-container">
-            <div className="profile">
-              <img
-                width={40}
-                height={40}
-                className="user-profile-image"
-                style={{ borderRadius: "50%" }}
-                src={user.photoURL}
-                alt="User Profile"
-              />
+    <>
+      <nav>
+        {showdropdown ? <DropdownMenu /> : null}
+        <div className="logo">
+          <Link to="/">
+            <img src={logo} alt="Logo" />
+          </Link>
+        </div>
+        <div className="searchBar-position">
+          <SearchBar />
+        </div>
+        <div>
+          {user ? (
+            <div
+              className="profile-user-container"
+              onClick={() => setShowdropdown(!showdropdown)}
+            >
+              <div className="profile">
+                <img
+                  width={40}
+                  height={40}
+                  className="user-profile-image"
+                  style={{ borderRadius: "50%" }}
+                  src={user.photoURL}
+                  alt="User Profile"
+                />
+              </div>
             </div>
-            <div className="signOut-container">
-              <button
-                onClick={() => auth.signOut()}
-                className="sign-out-button"
-              >
-                Sign Out
-              </button>
+          ) : (
+            <div className="sign-in">
+              <Link to="/sign-in">
+                <button className="sign-button">Sign In</button>
+              </Link>
             </div>
-          </div>
-        ) : (
-          <div className="sign-in">
-            <Link to="/sign-in">
-              <button className="sign-button">Sign In</button>
-            </Link>
-          </div>
-        )}
-      </div>
-    </nav>
+          )}
+        </div>
+      </nav>
+    </>
   );
 }
 
