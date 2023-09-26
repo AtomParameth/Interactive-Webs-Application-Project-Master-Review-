@@ -1,12 +1,46 @@
-@media screen and (max-width: 600px) {
-  * {
-    max-width: 1920px;
-    min-width: 400px;
-  }
+.compose-button-container {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    display: flex;
+    align-items: right;
+    margin: 0 auto;
+    padding: 10px 20px;
+    cursor: pointer;
+}
 
-  .pic {
+.cpButton-style {
+    border: none;
+    background-color: #000000;
+    color: white;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 1000px;
+    cursor: pointer;
+}
+
+.postContainer {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #000000;
     width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.postTitle {
+    color: white;
+    margin: 0 auto;
+}
+
+.postContent {
+    color: white;
+}
+
+.postUser {
+    color: white;
 }
