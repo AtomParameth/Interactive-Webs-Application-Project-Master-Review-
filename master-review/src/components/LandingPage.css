@@ -1,46 +1,173 @@
 .compose-button-container {
-    position: absolute;
-    right: 0%;
-    top: 50%;
-    display: flex;
-    align-items: right;
-    margin: 0 auto;
-    padding: 10px 20px;
-    cursor: pointer;
+  position: absolute;
+  right: 0%;
+  top: 100%;
+  display: flex;
+  align-items: right;
+  margin: 0 auto;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  justify-content: center;
 }
 
 .cpButton-style {
-    border: none;
-    background-color: #000000;
-    color: white;
-    margin: 0 auto;
-    padding: 10px 20px;
-    border-radius: 1000px;
-    cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 1000px;
+  cursor: pointer;
+  width: 100%;
+  padding: 0 20px;
+  justify-content: center;
 }
+
+.cpButton-style:hover {
+  filter: drop-shadow(0px 0px 0px 0px rgba(0, 0, 0, 0.25));
+  transition: 0.5s;
+  justify-content: center;
+}
+
+.footer {
+  position: "";
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  margin-top: 5%;
+}
+
+.catagories-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 60% 0 0;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+.catagories-btn {
+  border: none;
+  background-color: white;
+  color: black;
+  margin: 0 5px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+}
+
+.catagories-btn:hover {
+  background-color: #181818;
+  color: white;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+  transition: 0.5s;
+}
+
+.cpButton-style {
+  background-color: transparent;
+  width: 100%;
+}
+
+.cover-pic-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 400px;
+  background-color: #000000;
+  position: relative;
+}
+
+.color-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  z-index: 1;
+}
+
+.headC {
+  position: absolute;
+  color: white;
+  left: 10%;
+  top: 80%;
+  font-size: 50px;
+  z-index: 2;
+}
+
+
+.deleteButtonCT {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  margin: 0 auto;
+  padding: 20px 0; 
+  width: 60%; 
+  background-color: #181818;
+}
+
+
+.deleteButton {
+  border: none;
+  background-color: white;
+  color: #181818;
+  margin: 0; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer;
+}
+
 
 .postContainer {
-    display: flex;
-    align-items: left;
-    flex-direction: column;
-    margin: 0 auto;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: #000000;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto; 
+  padding: 20px;
+  width: 50%; 
+  background-color: #181818;
+  border-radius: 25px;
 }
+
 
 .postTitle {
-    color: white;
-    margin: 0 auto;
+  color: white;
+  margin: 0; 
+  padding: 10px 0; 
+  overflow: hidden;
+  text-align: center; 
 }
+
 
 .postContent {
-    color: white;
+  color: white;
+  margin: 10px 0; 
+  padding: 10px; 
+  overflow: hidden;
+  text-align: justify; 
 }
 
+
 .postUser {
-    color: white;
+  color: white;
+  margin: 10px 0; 
+  padding: 10px; 
+  overflow: hidden;
+  text-align: right; 
 }

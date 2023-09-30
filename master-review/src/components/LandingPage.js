@@ -11,7 +11,8 @@ import { auth, db } from "../firebase";
 import { useEffect } from "react";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import "./LandingPage.css";
-
+import cpButton from "./images/composebutton.svg";
+import bgCover from "./images/Oppenheimer-New-Trailer.jpeg";
 function LandingPage() {
   const poster = postersData.map((poster) => {
     return (
@@ -41,28 +42,24 @@ function LandingPage() {
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
-
   }, []);
-
 
   const deletePost = async (id) => {
     const docRef = doc(db, "master-review-posts", id);
     await deleteDoc(docRef);
 
-    setPostList((prevPostList) => prevPostList.filter((post) => post.id !== id));
+    setPostList((prevPostList) =>
+      prevPostList.filter((post) => post.id !== id)
+    );
   };
   return (
     <>
       <Navbar />
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <div className="cover-pic-container">
+        <div className="color-overlay"></div>
+        <img src={bgCover} alt="cover" className="cover-pic-container" />
+        <h1 className="headC">NEW CONTENT</h1>
+      </div>
       <br></br>
       <div className="slide-container">
         <h1 className="slide-title">NEW & UPCOMING MOVIES IN THEATERS</h1>
@@ -78,10 +75,12 @@ function LandingPage() {
         </div>
       </div>
       {showCompose ? (
-        <div className="compose-button-container">
+        <div  className="compose-button-container">
           <div>
             <Link to="create-posts">
-              <button className="cpButton-style">post</button>
+              <button className="cpButton-style">
+                <img src={cpButton} alt="Compose" />
+              </button>
             </Link>
           </div>
         </div>
@@ -91,26 +90,29 @@ function LandingPage() {
       <br></br>
       <br></br>
       <br></br>
-      <div>
-        <button>SHOW ALL</button>
-        <button>MOVIES</button>
-        <button>SERIES</button>
-        <button>BOOKS</button>
+      <div className="catagories-container">
+        <button className="catagories-btn">SHOW ALL</button>
+        <button className="catagories-btn">MOVIES</button>
+        <button className="catagories-btn">SERIES</button>
+        <button className="catagories-btn">BOOKS</button>
       </div>
-      {postList.map((post) => {
-        return (
-          <div className="postContainer">
-            <div className="postUser">{post.user.name}</div>
-            <div className="postTitle">{post.title}</div>
-            <div className="postContent">{post.post}</div>
-            <div className="deleteButton">
-              {auth.currentUser && post.user.id === auth.currentUser.uid && (
-                <button onClick={() => deletePost(post.id)}>Delete</button>
-              )}
+      <div className="postCT">
+        {postList.map((post) => {
+          return (
+            <div className="postContainer">
+              <div className="postUser">{post.user.name}</div>
+              <div className="postTitle">{post.title}</div>
+              <div className="postContent">{post.post}</div>
+              <div className="deleteButtonCT">
+                {auth.currentUser && post.user.id === auth.currentUser.uid && (
+                  <button className="deleteButton" onClick={() => deletePost(post.id)}>Delete</button>
+                )}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+      <div className="footer"></div>
     </>
   );
 }

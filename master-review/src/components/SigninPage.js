@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 function SigninPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const signInWithGoogle = async (e) => {
+  const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -21,7 +21,7 @@ function SigninPage() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
+
         navigate("/");
 
         // IdP data available using getAdditionalUserInfo(result)
@@ -45,7 +45,7 @@ function SigninPage() {
     });
   }, []);
 
-  console.log(user);
+
 
   return (
     <>

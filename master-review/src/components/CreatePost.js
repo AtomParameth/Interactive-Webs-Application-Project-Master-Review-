@@ -4,6 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import "./CreatePost.css";
 function CreatePost() {
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
@@ -17,12 +18,26 @@ function CreatePost() {
     });
     navigate("/");
   };
-  
 
   return (
     <div className="createPostPage">
       <div className="cpContainer">
         <h1>Create A Post</h1>
+        <div className="AuthorImgCt">
+          <img
+            className="AuthorImg"
+            src={auth.currentUser.photoURL}
+            width={60}
+            height={60}
+          />
+        </div>
+        <label>Author:</label>
+        <div className="Author">{auth.currentUser.displayName}</div>
+        <div className="catagories-post">
+          <button className="catagories-btn">MOVIES</button>
+          <button className="catagories-btn">SERIES</button>
+          <button className="catagories-btn">BOOKS</button>
+        </div>
         <div className="inputTitle">
           <label>Title:</label>
           <input
@@ -42,7 +57,12 @@ function CreatePost() {
           />
         </div>
         <div className="postButton">
-          <button onClick={createPost}>Post</button>
+          <button className="buttonPf" onClick={() => navigate("/")}>
+            Cancel
+          </button>
+          <button className="buttonPf" onClick={createPost}>
+            Post
+          </button>
         </div>
       </div>
     </div>
