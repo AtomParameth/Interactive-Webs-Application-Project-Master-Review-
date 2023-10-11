@@ -8,9 +8,10 @@ import DropdownMenu from "./DropMenu";
 import "./SearchBar.css";
 import SearchBar from "./SearchBar";
 
-function Navbar() {
+function Navbar({ onSearch }) {
   const [user, setUser] = useState(null);
   const [showdropdown, setShowdropdown] = useState(false);
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -19,6 +20,7 @@ function Navbar() {
 
     return () => unsubscribe();
   }, []);
+
 
   return (
     <>
@@ -30,7 +32,8 @@ function Navbar() {
           </Link>
         </div>
         <div className="searchBar-position">
-          <SearchBar />
+          <SearchBar   onSearch={onSearch}/>
+
         </div>
         <div>
           {user ? (

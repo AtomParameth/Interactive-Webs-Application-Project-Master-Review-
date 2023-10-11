@@ -5,8 +5,8 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import SigninPage from "./components/SigninPage";
 import CreatePost from "./components/CreatePost";
+import EditPostPage from "./components/EditPostPage";
 import "./App.css";
-
 
 const router = createBrowserRouter([
   {
@@ -21,8 +21,11 @@ const router = createBrowserRouter([
     path: "/create-posts",
     element: <CreatePost />,
   },
+  {
+    path: "/edit-posts/:postId",
+    element: <EditPostPage />,
+  },
 ]);
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

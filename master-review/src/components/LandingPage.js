@@ -13,6 +13,7 @@ import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import "./LandingPage.css";
 import cpButton from "./images/composebutton.svg";
 import bgCover from "./images/Oppenheimer-New-Trailer.jpeg";
+
 function LandingPage() {
   const poster = postersData.map((poster) => {
     return (
@@ -23,7 +24,7 @@ function LandingPage() {
       />
     );
   });
-
+  const [selectedCategory, setSelectedCategory] = useState("SHOW ALL");
   const [showCompose, setShowCompose] = useState(false);
   const [postList, setPostList] = useState([]);
   const postCollectionRef = collection(db, "master-review-posts");
@@ -52,9 +53,32 @@ function LandingPage() {
       prevPostList.filter((post) => post.id !== id)
     );
   };
+
+  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  useEffect(() => {
+    if (searchTerm !== "") {
+      const foundPost = postList.find(
+        (post) =>
+          (post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            post.user.name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+          (selectedCategory === "SHOW ALL" ||
+            post.category === selectedCategory)
+      );
+
+      if (foundPost && foundPost.ref) {
+        foundPost.ref.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [searchTerm, selectedCategory, postList]);
+  
   return (
     <>
-      <Navbar />
+      <Navbar onSearch={handleSearch} />
       <div className="cover-pic-container">
         <div className="color-overlay"></div>
         <img src={bgCover} alt="cover" className="cover-pic-container" />
@@ -75,9 +99,9 @@ function LandingPage() {
         </div>
       </div>
       {showCompose ? (
-        <div  className="compose-button-container">
+        <div className="compose-button-container">
           <div>
-            <Link to="create-posts">
+            <Link to="/create-posts">
               <button className="cpButton-style">
                 <img src={cpButton} alt="Compose" />
               </button>
@@ -91,26 +115,84 @@ function LandingPage() {
       <br></br>
       <br></br>
       <div className="catagories-container">
-        <button className="catagories-btn">SHOW ALL</button>
-        <button className="catagories-btn">MOVIES</button>
-        <button className="catagories-btn">SERIES</button>
-        <button className="catagories-btn">BOOKS</button>
+        <button
+          className="catagories-btn"
+          onClick={() => setSelectedCategory("SHOW ALL")}
+        >
+          SHOW ALL
+        </button>
+        <button
+          className="catagories-btn"
+          onClick={() => setSelectedCategory("MOVIES")}
+        >
+          MOVIES
+        </button>
+        <button
+          className="catagories-btn"
+          onClick={() => setSelectedCategory("SERIES")}
+        >
+          SERIES
+        </button>
+        <button
+          className="catagories-btn"
+          onClick={() => setSelectedCategory("BOOKS")}
+        >
+          BOOKS
+        </button>
       </div>
       <div className="postCT">
-        {postList.map((post) => {
-          return (
-            <div className="postContainer">
-              <div className="postUser">{post.user.name}</div>
-              <div className="postTitle">{post.title}</div>
-              <div className="postContent">{post.post}</div>
-              <div className="deleteButtonCT">
-                {auth.currentUser && post.user.id === auth.currentUser.uid && (
-                  <button className="deleteButton" onClick={() => deletePost(post.id)}>Delete</button>
-                )}
+        {postList
+          .filter((post) => {
+            if (selectedCategory === "SHOW ALL") {
+              return true;
+            } else {
+              return post.category === selectedCategory;
+            }
+          })
+          .filter((post) => {
+            // Filter based on search term and selected category
+            if (
+              selectedCategory === "SHOW ALL" ||
+              post.category === selectedCategory
+            ) {
+              return (
+                post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                post.user.name.toLowerCase().includes(searchTerm.toLowerCase())
+              );
+            } else {
+              return false;
+            }
+          })
+          .map((post) => {
+            return (
+              <div
+                className="postContainer"
+                id={post.id}
+                key={post.id}
+                ref={(ref) => post.ref = ref}
+              >
+                <div className="postUser">{post.user.name}</div>
+                <div className="postTitle">{post.title}</div>
+                <div className="postContent">{post.post}</div>
+                <div className="postButton-Container">
+                  {auth.currentUser &&
+                    post.user.id === auth.currentUser.uid && (
+                      <>
+                        <Link to={`/edit-posts/${post.id}`}>
+                          <button className="editButton">Edit</button>
+                        </Link>
+                        <button
+                          className="deleteButton"
+                          onClick={() => deletePost(post.id)}
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       <div className="footer"></div>
     </>
