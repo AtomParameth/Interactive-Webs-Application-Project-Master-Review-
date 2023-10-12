@@ -23,10 +23,11 @@
   flex-direction: column; 
   justify-content: center; 
   align-items: center; 
+  position: relative;
   border-radius: 1em;
   text-align: center;
-  width: 425px;
-  height: 550px;
+  width: 300px;
+  height: 400px;
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -34,8 +35,8 @@
   border-radius: 3rem;
   background-color: white;
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
-  width: 20rem;
-  height: 3rem;
+  width: 13rem;
+  height: 2.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,6 +44,8 @@
   border: none;
   font-weight: bold;
   cursor: pointer;
+  font-size: 0.6rem;
+  padding: 0;
 }
 
 .google-button:hover {
@@ -54,8 +57,9 @@
 .master-logo {
   position: relative;
   margin: 0;
-  padding: 0;
-  top: -10%;
+  padding: 0 0 20px 0;
+  top: 0;
+  width: 30% 
 }
 
 .google-border h3 {
@@ -65,12 +69,12 @@
 
 .google-border p {
   margin: 10px 20px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   text-align: center;
   font-family: Inter;
-  font-size: 1rem;
+  font-size: 0.6rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 450;
   line-height: normal;
   letter-spacing: 0.025rem;
 }
@@ -80,9 +84,9 @@
 }
 
 .move-close-button {
-  position: relative;
-  left: 42%;
-  top: -12%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .close-button {
@@ -99,29 +103,26 @@
   cursor: pointer; 
 }
 
-.close-button:hover {
-  background-image: url("./images/close-button-hover.svg") no-repeat center
-    center;
-  transition: background-image 0.3s ease-in-out; 
-}
 
 .google-logo-img {
-  padding: 0px 5px 0px 0px;
+  padding: 0px 5px 2px 0px;
+  height: 60%;
 }
 
 .need-help {
   border: none;
   background-color: transparent;
   padding: 0;
-  position: relative;
-  top: 5%;
-  left: 28%;
+  position: absolute;
+  bottom: 40px;
+  right: 45px;
   cursor: pointer;
+  font-size: 0.6rem;
 }
 
 .title {
   position: relative;
-  top: -2.5%;
-  font-size: 1.5em;
+  top: 0;
+  font-size: 1rem;
 }
 

@@ -61,7 +61,6 @@ function SigninPage() {
           </div>
           <img
             className="master-logo"
-            width="125"
             src={logo}
             alt="Master Review Logo"
           />
