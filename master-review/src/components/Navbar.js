@@ -12,7 +12,6 @@ function Navbar({ onSearch }) {
   const [user, setUser] = useState(null);
   const [showdropdown, setShowdropdown] = useState(false);
 
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
@@ -20,7 +19,6 @@ function Navbar({ onSearch }) {
 
     return () => unsubscribe();
   }, []);
-
 
   return (
     <>
@@ -32,10 +30,9 @@ function Navbar({ onSearch }) {
           </Link>
         </div>
         <div className="searchBar-position">
-          <SearchBar   onSearch={onSearch}/>
-
+          <SearchBar onSearch={onSearch} />
         </div>
-        <div>
+        <div className="cont">
           {user ? (
             <div
               className="profile-user-container"

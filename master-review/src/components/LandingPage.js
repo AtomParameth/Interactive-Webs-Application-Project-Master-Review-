@@ -1,32 +1,33 @@
 import "./Poster.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+// import Carousel from "react-multi-carousel";
+// import "react-multi-carousel/lib/styles.css";
 import Poster from "./Poster";
-import { postersData, responsive } from "./Data";
-import { useState } from "react";
+// import { postersData, responsive } from "./Data";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase";
-import { useEffect } from "react";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import "./LandingPage.css";
 import cpButton from "./images/composebutton.svg";
 import bgCover from "./images/Oppenheimer-New-Trailer.jpeg";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 function LandingPage() {
-  const poster = postersData.map((poster) => {
-    return (
-      <Poster
-        name={poster.name}
-        url={poster.imageUrl}
-        describe={poster.describe}
-      />
-    );
-  });
+  // const poster = postersData.map((poster) => {
+  //   return (
+  //     <Poster
+  //       name={poster.name}
+  //       url={poster.imageUrl}
+  //       describe={poster.describe}
+  //     />
+  //   );
+  // });
   const [selectedCategory, setSelectedCategory] = useState("SHOW ALL");
   const [showCompose, setShowCompose] = useState(false);
   const [postList, setPostList] = useState([]);
+  const [postFromApi, setPostFromApi] = useState([]);
   const postCollectionRef = collection(db, "master-review-posts");
 
   useEffect(() => {
@@ -71,32 +72,63 @@ function LandingPage() {
       );
 
       if (foundPost && foundPost.ref) {
-        foundPost.ref.scrollIntoView({ behavior: "smooth" });
+        foundPost.ref.scrollIntoView({ behavior: "instant" });
       }
     }
   }, [searchTerm, selectedCategory, postList]);
-  
+
+  const getMovie = () => {
+    fetch(
+      "https://api.themoviedb.org/3/discover/movie?api_key=8d5b0eb1e2e4d31e459ec29110893f97"
+    )
+      .then((response) => response.json())
+      .then((data) => setPostFromApi(data.results));
+  };
+
+  useEffect(() => {
+    getMovie();
+  }, []);
+
   return (
     <>
       <Navbar onSearch={handleSearch} />
-      <div className="cover-pic-container">
-        <div className="color-overlay"></div>
-        <img src={bgCover} alt="cover" className="cover-pic-container" />
-        <h1 className="headC">NEW CONTENT</h1>
+      <div className="carouselPic">
+        <Carousel
+          showThumbs={false}
+          autoPlay={true}
+          transitionTime={3}
+          infiniteLoop={true}
+          showStatus={false}
+        >
+          {postFromApi.map((movie) => (
+            <>
+              <div className="cover-pic-carousel">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${
+                    movie && movie.backdrop_path
+                  }`}
+                  alt="cover"
+                  className="cover-pic"
+                />
+              </div>
+              <div className="cover-pic-overlay">
+                <div className="poster_title">
+                  {movie ? movie.original_title : ""}
+                </div>
+                <div className="poster_rating">
+                  Rating: {movie ? movie.vote_average : ""}
+                </div>
+              </div>
+            </>
+          ))}
+        </Carousel>
       </div>
       <br></br>
       <div className="slide-container">
         <h1 className="slide-title">NEW & UPCOMING MOVIES IN THEATERS</h1>
-        <div className="slide-content">
-          <Carousel
-            swipeable={false}
-            draggable={false}
-            showDots={true}
-            responsive={responsive}
-          >
-            {poster}
-          </Carousel>
-        </div>
+      </div>
+      <div className="slide-content">
+        <h1>PICTURE SLIDERS CONTENT</h1>
       </div>
       {showCompose ? (
         <div className="compose-button-container">
@@ -150,7 +182,6 @@ function LandingPage() {
             }
           })
           .filter((post) => {
-            // Filter based on search term and selected category
             if (
               selectedCategory === "SHOW ALL" ||
               post.category === selectedCategory
@@ -169,7 +200,7 @@ function LandingPage() {
                 className="postContainer"
                 id={post.id}
                 key={post.id}
-                ref={(ref) => post.ref = ref}
+                ref={(ref) => (post.ref = ref)}
               >
                 <div className="postUser">{post.user.name}</div>
                 <div className="postTitle">{post.title}</div>

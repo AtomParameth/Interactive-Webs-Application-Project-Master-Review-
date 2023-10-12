@@ -14,6 +14,9 @@ nav {
   text-align: center;
   padding: 0.5rem;
   margin: 0 auto;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
 }
 
 .logo {
@@ -28,13 +31,13 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 7rem 0 0;
+  padding: 0 0 0 0;
 }
 
 .sign-button {
   background-color: white;
-  width: 7.5rem;
-  height: 2.8125rem;
+  width: 6rem;
+  height: 2.2rem;
   box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   border-radius: 2rem;
@@ -43,7 +46,7 @@ nav {
   justify-content: center;
   border: none;
   color: rgba(51, 132, 253, 1);
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -93,11 +96,21 @@ nav {
   cursor: pointer;
 }
 
+.cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 7rem 0 0;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
 .profile {
   display: flex;
   align-items: center;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 0 0 0;
+  right: 7rem;
 }
 
 .profile:hover {
@@ -108,7 +121,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 14rem;
+  padding: 0;
   margin: 0 auto;
   width: 100%;
 }

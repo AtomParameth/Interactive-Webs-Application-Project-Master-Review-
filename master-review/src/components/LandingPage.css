@@ -49,7 +49,7 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding: 0 60% 0 0;
+  padding: 0 55% 0 0;
   width: 100%;
   height: 100px;
   position: relative;
@@ -79,36 +79,6 @@
   width: 100%;
 }
 
-.cover-pic-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 0;
-  width: 100%;
-  height: 400px;
-  background-color: #000000;
-  position: relative;
-}
-
-.color-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  z-index: 1;
-}
-
-.headC {
-  position: absolute;
-  color: white;
-  left: 10%;
-  top: 80%;
-  font-size: 50px;
-  z-index: 2;
-}
 
 .postButton-Container {
   display: flex;
@@ -191,19 +161,58 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 20px auto;
+  width: 100%;
+  
 }
 
-.postContainer {
-  width: 40%;
-  margin: 20px;
-  padding: 20px;
-  background-color: #181818;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease;
-
-  &:hover {
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
-    transform: translateY(-5px);
-  }
+.cover-pic-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px; 
+  box-sizing: border-box;
 }
+
+.poster_title {
+  font-size: 24px; 
+  font-weight: bold;
+  padding: 0;
+  color: white; 
+  display: flex;
+  align-items: flex-start;
+}
+
+.poster_rating {
+  font-size: 20px; 
+  font-weight: bold;
+  color: white; 
+  display: flex;
+  align-items: flex-start;
+}
+
+.carouselPic{
+  padding: 55px 0px 0px 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.cover-pic-carousel::before {
+  content: "";
+  position: absolute;
+  padding: 35px 0px 0px 0px;
+  width: 100%;
+  height: 70vh;
+  z-index: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)); /* Adjust gradient colors as needed */
+}
+
+.cover-pic-carousel{
+  width: 100%;
+  height: 75vh;
+}
+
+.cover-pic{
+  width: 100%;
+  height: 100%;
+}
+

@@ -13,10 +13,11 @@
 
 .search-bar {
   padding: 0;
+  margin: 0 0.5rem 0 0.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 85%;
+  width: 80%;
   background: transparent;
   border: none;
 }
