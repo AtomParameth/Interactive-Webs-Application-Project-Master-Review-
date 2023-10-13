@@ -12,6 +12,12 @@ function CreatePost() {
   const [user, setUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate();
+  const [buttonStyles, setButtonStyles] = useState({
+    "SHOW ALL": { backgroundColor: "white", color: "black" },
+    "MOVIES": { backgroundColor: "white", color: "black" },
+    "SERIES": { backgroundColor: "white", color: "black" },
+    "BOOKS": { backgroundColor: "white", color: "black" },
+  });
   const postCollectionRef = collection(db, "master-review-posts");
 
   useEffect(() => {
@@ -28,6 +34,17 @@ function CreatePost() {
       category: selectedCategory,
     });
     navigate("/");
+  };
+  const handleCategoryClick = (category) => {
+    const updatedStyles = {};
+    Object.keys(buttonStyles).forEach((key) => {
+      updatedStyles[key] = { backgroundColor: "white", color: "black" };
+    });
+
+    updatedStyles[category] = { backgroundColor: "black", color: "white" };
+
+    setSelectedCategory(category);
+    setButtonStyles(updatedStyles);
   };
 
   return (
@@ -49,19 +66,29 @@ function CreatePost() {
         <div className="catagories-post">
           <button
             className="catagories-btn"
-            onClick={() => setSelectedCategory("MOVIES")}
+            style={buttonStyles["SHOW ALL"]}
+            onClick={() => handleCategoryClick("SHOW ALL")}
+          >
+            SHOW ALL
+          </button>
+          <button
+            className="catagories-btn"
+            style={buttonStyles["MOVIES"]}
+            onClick={() => handleCategoryClick("MOVIES")}
           >
             MOVIES
           </button>
           <button
             className="catagories-btn"
-            onClick={() => setSelectedCategory("SERIES")}
+            style={buttonStyles["SERIES"]}
+            onClick={() => handleCategoryClick("SERIES")}
           >
             SERIES
           </button>
           <button
             className="catagories-btn"
-            onClick={() => setSelectedCategory("BOOKS")}
+            style={buttonStyles["BOOKS"]}
+            onClick={() => handleCategoryClick("BOOKS")}
           >
             BOOKS
           </button>
