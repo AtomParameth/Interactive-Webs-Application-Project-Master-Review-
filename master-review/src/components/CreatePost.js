@@ -66,13 +66,6 @@ function CreatePost() {
         <div className="catagories-post">
           <button
             className="catagories-btn"
-            style={buttonStyles["SHOW ALL"]}
-            onClick={() => handleCategoryClick("SHOW ALL")}
-          >
-            SHOW ALL
-          </button>
-          <button
-            className="catagories-btn"
             style={buttonStyles["MOVIES"]}
             onClick={() => handleCategoryClick("MOVIES")}
           >
