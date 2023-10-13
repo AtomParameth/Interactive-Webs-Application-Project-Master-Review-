@@ -15,6 +15,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 
 function LandingPage() {
+  
   // const poster = postersData.map((poster) => {
   //   return (
   //     <Poster
@@ -129,6 +130,25 @@ function LandingPage() {
       </div>
       <div className="slide-content">
         <h1>PICTURE SLIDERS CONTENT</h1>
+        <Carousel
+          showThumbs={false}
+          autoPlay={true}
+          transitionTime={3}
+          infiniteLoop={true}
+          showStatus={false}>
+          <div className="poster">
+            <img
+            src="https://lh3.googleusercontent.com/uSgVlbjstu3Cw0lNXkQgBpCK2VHIZpCz_iIB368WHlv3RmsecZus8wW3isyNTcippOpTvNng-nv_7Gy0BQFTa5AbxPIz4YN-=s0"/>
+          </div>
+          <div className="poster">
+            <img
+            src="https://m.media-amazon.com/images/I/71lqDylcvGL.jpg"/>
+          </div>
+          <div className="poster">
+            <img src="https://npr.brightspotcdn.com/dims4/default/57c05cf/2147483647/strip/true/crop/2000x3000+0+0/resize/880x1320!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F53%2F6a%2Fc91c68c646f383865fb7cb07493a%2F082923-killers-flower-moon-key-art-photo-grid-01.png"
+            />
+          </div>
+        </Carousel>
       </div>
       {showCompose ? (
         <div className="compose-button-container">

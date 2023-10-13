@@ -11,7 +11,7 @@ h1 {
 }
 
 .poster--image {
-  width: 100%;
+  width: 10%;
   height: 10em;
   object-fit: cover;
   border-radius: 16px 16px 0 0;
