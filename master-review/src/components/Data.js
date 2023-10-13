@@ -20,33 +20,38 @@ export const responsive = {
 
 export const postersData = [
     {
+        className: "poster",
         id: 1,
-        imageUrl: "https://live.staticflickr.com/300/19346893796_0bcda46777_z.jpg",
-        name: "The Last of Us",
+        imageUrl: require("./images/poster_attack-on-titan.png"),
+        name: "Attack on Titan",
         describe: "description of series"
     },
     {
+        className: "poster",
         id: 2,
-        imageUrl: "https://live.staticflickr.com/300/19346893796_0bcda46777_z.jpg",
-        name: "The Last of Us",
+        imageUrl: require("./images/poster_one-piece.png"),
+        name: "One Piece",
         describe: "description of series"
     },
     {
+        className: "poster",
         id: 3,
-        imageUrl: "https://live.staticflickr.com/300/19346893796_0bcda46777_z.jpg",
-        name: "The Last of Us",
+        imageUrl: require("./images/poster_the-continental.png"),
+        name: "The Continental",
         describe: "description of series"
     },
     {
+        className: "poster",
         id: 4,
-        imageUrl: "https://live.staticflickr.com/300/19346893796_0bcda46777_z.jpg",
-        name: "The Last of Us",
+        imageUrl: require("./images/poster_the-nun-ii-2.png"),
+        name: "The Nun 2",
         describe: "description of series"
     },
     {
+        className: "poster",
         id: 5,
-        imageUrl: "https://live.staticflickr.com/300/19346893796_0bcda46777_z.jpg",
-        name: "The Last of Us",
+        imageUrl: require("./images/poster_guardians-of-the-galaxy.png"),
+        name: "Guardians of The Galaxy",
         describe: "description of series"
     }
 ];
