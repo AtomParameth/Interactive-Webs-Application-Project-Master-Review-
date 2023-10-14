@@ -52,9 +52,26 @@ textarea {
   justify-content: space-between;
 }
 
-.buttonPf {
-  background-color: #fff;
-  color: #181818;
+.buttonPf1 {
+  background-color: rgb(197, 38, 38);
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.3));
+  display: flex;
+  justify-content: space-between;
+}
+.buttonPf1:hover {
+  background-color: rgb(137, 0, 0);
+  color: white;
+  transition: 0.5s;
+}
+.buttonPf2 {
+  background-color: #1bc421;
+  color: #ffffff;
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
@@ -65,8 +82,8 @@ textarea {
   justify-content: space-between;
 }
 
-.buttonPf:hover {
-  background-color: #181818;
+.buttonPf2:hover {
+  background-color: #119000;
   color: white;
   transition: 0.5s;
 }

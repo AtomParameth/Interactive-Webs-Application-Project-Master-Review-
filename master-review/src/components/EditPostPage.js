@@ -69,6 +69,9 @@ function EditPostPage() {
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
   };
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <div className="editePageBG">
@@ -76,7 +79,7 @@ function EditPostPage() {
         {user && (
           <>
             <h1>Edit Post</h1>
-            <label>Author:</label>
+
             <div>
               <img
                 className="AuthorImg"
@@ -85,17 +88,31 @@ function EditPostPage() {
                 height={60}
               />
             </div>
+            <label>Author:</label>
+            <label>{user.displayName}</label>
             <label>Category:</label>
-            <div className="category-button">
-              <button className="category-buttons1" onClick={() => handleCategorySelection("MOVIES")}>
+            
+            <div>
+
+              <button
+                className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
+                onClick={() => handleCategoryClick("MOVIES")}
+              >
                 MOVIES
               </button>
-              <button className="category-buttons2" onClick={() => handleCategorySelection("SERIES")}>
+              <button
+                className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
+                onClick={() => handleCategoryClick("SERIES")}
+              >
                 SERIES
               </button>
-              <button className="category-buttons3" onClick={() => handleCategorySelection("BOOKS")}>
+              <button
+                className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
+                onClick={() => handleCategoryClick("BOOKS")}
+              >
                 BOOKS
               </button>
+
             </div>
 
             <div>
@@ -117,7 +134,7 @@ function EditPostPage() {
               <button onClick={() => navigate(-1)} className="cancelButton">
                 Cancel
               </button>
-              <button onClick={updatePost} className="saveButton">
+              <button onClick={updatePost} className="saveButton ">
                 Save
               </button>
             </div>

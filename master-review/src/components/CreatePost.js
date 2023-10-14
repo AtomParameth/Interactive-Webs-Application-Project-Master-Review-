@@ -46,7 +46,7 @@ function CreatePost() {
   return (
     <div className="createPostPage">
       <div className="cpContainer">
-        <h1>Create A Post</h1>
+        <h1>Create a post</h1>
         {user && (
           <div className="AuthorImgCt">
             <img
@@ -98,10 +98,10 @@ function CreatePost() {
           />
         </div>
         <div className="postButton">
-          <button className="buttonPf" onClick={() => navigate(-1)}>
+          <button className="buttonPf1" onClick={() => navigate(-1)}>
             Cancel
           </button>
-          <button className="buttonPf" onClick={createPost}>
+          <button className="buttonPf2" onClick={createPost}>
             Post
           </button>
         </div>

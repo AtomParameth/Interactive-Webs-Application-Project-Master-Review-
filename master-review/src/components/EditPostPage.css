@@ -37,7 +37,15 @@
     border-radius: 4px;
   }
   
-  .cancelButton,
+  .cancelButton{
+    background-color: #af4c4c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
   .saveButton {
     background-color: #4caf50;
     color: #fff;
@@ -48,7 +56,10 @@
     font-size: 16px;
   }
   
-  .cancelButton:hover,
+  .cancelButton:hover{
+    background-color: #a04545;
+  }
+  
   .saveButton:hover {
     background-color: #45a049;
   }
@@ -65,53 +76,32 @@
     cursor: not-allowed;
   }
   
-/* .category-button {
-  width: 200px;
-  height: 80px;
-  border-radius:  10px;
-  background-color: transparent;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  font-size: 20px;
-  font-weight: bold;
-  border: 2px solid #646FD4;
-} */
-.category-buttons1{
-  width: 70px;
-  height: 40px;
-  border-radius:  10px;
-  background-color: transparent;
-  color: #000000;
-  position: relative;
-  overflow: hidden;
-  font-size: 15px;
-  font-weight: bold;
-  border: 2px solid #000000;  
+
+.category-buttons{
+  border: none;
+  background-color: white;
+  color: black;
+  margin: 0 5px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
+  transition: background-color 0.5s; 
+}
+.catagories-btn:hover {
+  background-color: #181818;
+  color: white;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+  transition: 0.5s;
+}
+.category-buttons.selected {
+  background-color: black;
+  color: white;
 }
 
-.category-buttons2{
-  width: 70px;
-  height: 40px;
-  border-radius:  10px;
-  background-color: transparent;
-  color: #000000;
-  position: relative;
-  overflow: hidden;
-  font-size: 15px;
-  font-weight: bold;
-  border: 2px solid #000000;  
-}
-
-.category-buttons3{
-  width: 70px;
-  height: 40px;
-  border-radius:  10px;
-  background-color: transparent;
-  color: #000000;
-  position: relative;
-  overflow: hidden;
-  font-size: 15px;
-  font-weight: bold;
-  border: 2px solid #000000;  
+.category-buttons:focus {
+  background-color: #181818;
+  color: white;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+  transition: 0.5s;
 }

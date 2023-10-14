@@ -103,8 +103,8 @@
 
 .deleteButton {
   border: none;
-  background-color: white;
-  color: #181818;
+  background-color: rgb(197, 38, 38);
+  color: hsl(0, 0%, 95%);
   margin: 0;
   padding: 10px 20px;
   border-radius: 5px;
@@ -113,8 +113,8 @@
 
 .editButton {
   border: none;
-  background-color: white;
-  color: #181818;
+  background-color: rgb(94, 80, 217);
+  color: #ebebeb;
   margin: 0;
   padding: 10px 20px;
   border-radius: 5px;

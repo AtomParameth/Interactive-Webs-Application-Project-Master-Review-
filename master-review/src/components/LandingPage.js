@@ -88,23 +88,7 @@ function LandingPage() {
   useEffect(() => {
     getMovie();
   }, []);
-  // const handleCategoryClick = (category) => {
-  //   const updatedStyles = {};
-  //   Object.keys(buttonStyles).forEach((key) => {
-  //     updatedStyles[key] = {
-  //       backgroundColor: "white",
-  //       color: "black",
-  //     };
-  //   });
 
-  //   updatedStyles[category] = {
-  //     backgroundColor: "black",
-  //     color: "white",
-  //   };
-
-  //   setSelectedCategory(category);
-  //   setButtonStyles(updatedStyles);
-  // };
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
@@ -123,9 +107,8 @@ function LandingPage() {
             <>
               <div className="cover-pic-carousel">
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${
-                    movie && movie.backdrop_path
-                  }`}
+                  src={`https://image.tmdb.org/t/p/original/${movie && movie.backdrop_path
+                    }`}
                   alt="cover"
                   className="cover-pic"
                 />
@@ -210,6 +193,7 @@ function LandingPage() {
         </button>
       </div>
       <div className="postCT">
+
         {postList
           .filter((post) => {
             if (selectedCategory === "SHOW ALL") {
@@ -232,6 +216,7 @@ function LandingPage() {
             }
           })
           .map((post) => {
+
             return (
               <div
                 className="postContainer"
@@ -239,6 +224,7 @@ function LandingPage() {
                 key={post.id}
                 ref={(ref) => (post.ref = ref)}
               >
+                
                 <div className="postUser">{post.user.name}</div>
                 <div className="postTitle">{post.title}</div>
                 <div className="postContent">{post.post}</div>
