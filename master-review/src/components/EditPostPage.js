@@ -87,13 +87,13 @@ function EditPostPage() {
             </div>
             <label>Category:</label>
             <div className="category-button">
-              <button className="category-buttons" onClick={() => handleCategorySelection("MOVIES")}>
+              <button className="category-buttons1" onClick={() => handleCategorySelection("MOVIES")}>
                 MOVIES
               </button>
-              <button className="category-buttons" onClick={() => handleCategorySelection("SERIES")}>
+              <button className="category-buttons2" onClick={() => handleCategorySelection("SERIES")}>
                 SERIES
               </button>
-              <button className="category-buttons" onClick={() => handleCategorySelection("BOOKS")}>
+              <button className="category-buttons3" onClick={() => handleCategorySelection("BOOKS")}>
                 BOOKS
               </button>
             </div>

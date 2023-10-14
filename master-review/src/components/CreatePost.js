@@ -12,12 +12,6 @@ function CreatePost() {
   const [user, setUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate();
-  const [buttonStyles, setButtonStyles] = useState({
-    "SHOW ALL": { backgroundColor: "white", color: "black" },
-    "MOVIES": { backgroundColor: "white", color: "black" },
-    "SERIES": { backgroundColor: "white", color: "black" },
-    "BOOKS": { backgroundColor: "white", color: "black" },
-  });
   const postCollectionRef = collection(db, "master-review-posts");
 
   useEffect(() => {
@@ -35,18 +29,20 @@ function CreatePost() {
     });
     navigate("/");
   };
+  // const handleCategoryClick = (category) => {
+  //   const updatedStyles = {};
+  //   Object.keys(buttonStyles).forEach((key) => {
+  //     updatedStyles[key] = { backgroundColor: "white", color: "black" };
+  //   });
+
+  //   updatedStyles[category] = { backgroundColor: "black", color: "white" };
+
+  //   setSelectedCategory(category);
+  //   setButtonStyles(updatedStyles);
+  // };
   const handleCategoryClick = (category) => {
-    const updatedStyles = {};
-    Object.keys(buttonStyles).forEach((key) => {
-      updatedStyles[key] = { backgroundColor: "white", color: "black" };
-    });
-
-    updatedStyles[category] = { backgroundColor: "black", color: "white" };
-
     setSelectedCategory(category);
-    setButtonStyles(updatedStyles);
   };
-
   return (
     <div className="createPostPage">
       <div className="cpContainer">
@@ -65,22 +61,19 @@ function CreatePost() {
         <div className="Author">{user && user.displayName}</div>
         <div className="catagories-post">
           <button
-            className="catagories-btn"
-            style={buttonStyles["MOVIES"]}
+            className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
             onClick={() => handleCategoryClick("MOVIES")}
           >
             MOVIES
           </button>
           <button
-            className="catagories-btn"
-            style={buttonStyles["SERIES"]}
+            className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
             onClick={() => handleCategoryClick("SERIES")}
           >
             SERIES
           </button>
           <button
-            className="catagories-btn"
-            style={buttonStyles["BOOKS"]}
+            className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
             onClick={() => handleCategoryClick("BOOKS")}
           >
             BOOKS
