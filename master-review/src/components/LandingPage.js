@@ -88,7 +88,23 @@ function LandingPage() {
   useEffect(() => {
     getMovie();
   }, []);
+  // const handleCategoryClick = (category) => {
+  //   const updatedStyles = {};
+  //   Object.keys(buttonStyles).forEach((key) => {
+  //     updatedStyles[key] = {
+  //       backgroundColor: "white",
+  //       color: "black",
+  //     };
+  //   });
 
+  //   updatedStyles[category] = {
+  //     backgroundColor: "black",
+  //     color: "white",
+  //   };
+
+  //   setSelectedCategory(category);
+  //   setButtonStyles(updatedStyles);
+  // };
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
@@ -127,25 +143,32 @@ function LandingPage() {
         </Carousel>
       </div>
       <br></br>
-      <h1 className="slide-title">NEW & UPCOMING MOVIES IN THEATERS</h1>
-      <div className="contt">
-        <Carousel
-          showThumbs={false}
-          autoPlay={true}
-          transitionTime={3}
-          infiniteLoop={true}
-          showStatus={false}
-        >
-          <div className="poster">
-            <img src="https://lh3.googleusercontent.com/uSgVlbjstu3Cw0lNXkQgBpCK2VHIZpCz_iIB368WHlv3RmsecZus8wW3isyNTcippOpTvNng-nv_7Gy0BQFTa5AbxPIz4YN-=s0" />
-          </div>
-          <div className="poster">
-            <img src="https://m.media-amazon.com/images/I/71lqDylcvGL.jpg" />
-          </div>
-          <div className="poster">
-            <img src="https://npr.brightspotcdn.com/dims4/default/57c05cf/2147483647/strip/true/crop/2000x3000+0+0/resize/880x1320!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F53%2F6a%2Fc91c68c646f383865fb7cb07493a%2F082923-killers-flower-moon-key-art-photo-grid-01.png" />
-          </div>
-        </Carousel>
+      <div className="slide-container">
+        <h1 className="slide-title">NEW & UPCOMING MOVIES IN THEATERS</h1>
+      </div>
+      <div className="slide-content">
+        <div className="slider-cont">
+          <Carousel
+            showThumbs={false}
+            autoPlay={true}
+            transitionTime={3}
+            infiniteLoop={true}
+            showStatus={false} 
+            centerMode={true} // enable center mode
+            centerSlidePercentage={33.33} // set center slide width in percentage
+            emulateTouch={true} // enable dragging and swiping
+          >
+            <div className="poster">
+              <img src="https://lh3.googleusercontent.com/uSgVlbjstu3Cw0lNXkQgBpCK2VHIZpCz_iIB368WHlv3RmsecZus8wW3isyNTcippOpTvNng-nv_7Gy0BQFTa5AbxPIz4YN-=s0" />
+            </div>
+            <div className="poster">
+              <img src="https://m.media-amazon.com/images/I/71lqDylcvGL.jpg" />
+            </div>
+            <div className="poster">
+              <img src="https://npr.brightspotcdn.com/dims4/default/57c05cf/2147483647/strip/true/crop/2000x3000+0+0/resize/880x1320!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F53%2F6a%2Fc91c68c646f383865fb7cb07493a%2F082923-killers-flower-moon-key-art-photo-grid-01.png" />
+            </div>
+          </Carousel>
+        </div>
       </div>
       {showCompose ? (
         <div className="compose-button-container">
@@ -165,33 +188,25 @@ function LandingPage() {
       <br></br>
       <div className="catagories-container">
         <button
-          className={`catagories-btn ${
-            selectedCategory === "SHOW ALL" ? "selected" : ""
-          }`}
+          className={`catagories-btn ${selectedCategory === "SHOW ALL" ? 'selected' : ''}`}
           onClick={() => handleCategoryClick("SHOW ALL")}
         >
           SHOW ALL
         </button>
         <button
-          className={`catagories-btn ${
-            selectedCategory === "MOVIES" ? "selected" : ""
-          }`}
+          className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
           onClick={() => handleCategoryClick("MOVIES")}
         >
           MOVIES
         </button>
         <button
-          className={`catagories-btn ${
-            selectedCategory === "SERIES" ? "selected" : ""
-          }`}
+          className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
           onClick={() => handleCategoryClick("SERIES")}
         >
           SERIES
         </button>
         <button
-          className={`catagories-btn ${
-            selectedCategory === "BOOKS" ? "selected" : ""
-          }`}
+          className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
           onClick={() => handleCategoryClick("BOOKS")}
         >
           BOOKS
