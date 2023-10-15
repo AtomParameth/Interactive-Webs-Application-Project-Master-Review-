@@ -155,7 +155,7 @@ function LandingPage() {
             infiniteLoop={true}
             showStatus={false} 
             centerMode={true} // enable center mode
-            centerSlidePercentage={33.33} // set center slide width in percentage
+            centerSlidePercentage={20} // set center slide width in percentage
             emulateTouch={true} // enable dragging and swiping
           >
             <div className="poster">
