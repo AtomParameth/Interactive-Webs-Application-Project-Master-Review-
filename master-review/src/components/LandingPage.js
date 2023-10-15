@@ -118,6 +118,8 @@ function LandingPage() {
           transitionTime={3}
           infiniteLoop={true}
           showStatus={false}
+          showArrows={false}
+          renderIndicator={false}
         >
           {postFromApi.map((movie) => (
             <>
@@ -149,23 +151,23 @@ function LandingPage() {
       <div className="slide-content">
         <div className="slider-cont">
           <Carousel
-            showThumbs={false}
-            autoPlay={false}
+          className="Carousel-C"
+            autoPlay={true}
             infiniteLoop={true}
             showStatus={false} 
             centerMode={true} // enable center mode
-            centerSlidePercentage={20} // set center slide width in percentage
-            emulateTouch={true} // enable dragging and swiping
+            centerSlidePercentage={30} // set center slide width in percentage
+            // emulateTouch={true} // enable dragging and swiping
           >
           {postFromApi.map((movie) => (
             <>
-              <div className="poster">
+              <div className="poster_t">
                 <img
                   src={`https://image.tmdb.org/t/p/original/${
                     movie && movie.backdrop_path
                   }`}
                   alt="cover"
-                  className="cover-pic"
+                  className="pic_t"
                 />
               </div>
             </>
@@ -184,11 +186,6 @@ function LandingPage() {
           </div>
         </div>
       ) : null}
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <div className="catagories-container">
         <button
           className={`catagories-btn ${selectedCategory === "SHOW ALL" ? 'selected' : ''}`}
