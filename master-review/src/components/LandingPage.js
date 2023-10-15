@@ -107,8 +107,9 @@ function LandingPage() {
             <>
               <div className="cover-pic-carousel">
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${movie && movie.backdrop_path
-                    }`}
+                  src={`https://image.tmdb.org/t/p/original/${
+                    movie && movie.backdrop_path
+                  }`}
                   alt="cover"
                   className="cover-pic"
                 />
@@ -126,29 +127,25 @@ function LandingPage() {
         </Carousel>
       </div>
       <br></br>
-      <div className="slide-container">
-        <h1 className="slide-title">NEW & UPCOMING MOVIES IN THEATERS</h1>
-      </div>
-      <div className="slide-content">
-        <div className="slider-cont">
-          <Carousel
-            showThumbs={false}
-            autoPlay={true}
-            transitionTime={3}
-            infiniteLoop={true}
-            showStatus={false}
-          >
-            <div className="poster">
-              <img src="https://lh3.googleusercontent.com/uSgVlbjstu3Cw0lNXkQgBpCK2VHIZpCz_iIB368WHlv3RmsecZus8wW3isyNTcippOpTvNng-nv_7Gy0BQFTa5AbxPIz4YN-=s0" />
-            </div>
-            <div className="poster">
-              <img src="https://m.media-amazon.com/images/I/71lqDylcvGL.jpg" />
-            </div>
-            <div className="poster">
-              <img src="https://npr.brightspotcdn.com/dims4/default/57c05cf/2147483647/strip/true/crop/2000x3000+0+0/resize/880x1320!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F53%2F6a%2Fc91c68c646f383865fb7cb07493a%2F082923-killers-flower-moon-key-art-photo-grid-01.png" />
-            </div>
-          </Carousel>
-        </div>
+      <h1 className="slide-title">NEW & UPCOMING MOVIES IN THEATERS</h1>
+      <div className="contt">
+        <Carousel
+          showThumbs={false}
+          autoPlay={true}
+          transitionTime={3}
+          infiniteLoop={true}
+          showStatus={false}
+        >
+          <div className="poster">
+            <img src="https://lh3.googleusercontent.com/uSgVlbjstu3Cw0lNXkQgBpCK2VHIZpCz_iIB368WHlv3RmsecZus8wW3isyNTcippOpTvNng-nv_7Gy0BQFTa5AbxPIz4YN-=s0" />
+          </div>
+          <div className="poster">
+            <img src="https://m.media-amazon.com/images/I/71lqDylcvGL.jpg" />
+          </div>
+          <div className="poster">
+            <img src="https://npr.brightspotcdn.com/dims4/default/57c05cf/2147483647/strip/true/crop/2000x3000+0+0/resize/880x1320!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F53%2F6a%2Fc91c68c646f383865fb7cb07493a%2F082923-killers-flower-moon-key-art-photo-grid-01.png" />
+          </div>
+        </Carousel>
       </div>
       {showCompose ? (
         <div className="compose-button-container">
@@ -168,32 +165,39 @@ function LandingPage() {
       <br></br>
       <div className="catagories-container">
         <button
-          className={`catagories-btn ${selectedCategory === "SHOW ALL" ? 'selected' : ''}`}
+          className={`catagories-btn ${
+            selectedCategory === "SHOW ALL" ? "selected" : ""
+          }`}
           onClick={() => handleCategoryClick("SHOW ALL")}
         >
           SHOW ALL
         </button>
         <button
-          className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
+          className={`catagories-btn ${
+            selectedCategory === "MOVIES" ? "selected" : ""
+          }`}
           onClick={() => handleCategoryClick("MOVIES")}
         >
           MOVIES
         </button>
         <button
-          className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
+          className={`catagories-btn ${
+            selectedCategory === "SERIES" ? "selected" : ""
+          }`}
           onClick={() => handleCategoryClick("SERIES")}
         >
           SERIES
         </button>
         <button
-          className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
+          className={`catagories-btn ${
+            selectedCategory === "BOOKS" ? "selected" : ""
+          }`}
           onClick={() => handleCategoryClick("BOOKS")}
         >
           BOOKS
         </button>
       </div>
       <div className="postCT">
-
         {postList
           .filter((post) => {
             if (selectedCategory === "SHOW ALL") {
@@ -216,7 +220,6 @@ function LandingPage() {
             }
           })
           .map((post) => {
-
             return (
               <div
                 className="postContainer"
@@ -224,7 +227,6 @@ function LandingPage() {
                 key={post.id}
                 ref={(ref) => (post.ref = ref)}
               >
-                
                 <div className="postUser">{post.user.name}</div>
                 <div className="postTitle">{post.title}</div>
                 <div className="postContent">{post.post}</div>

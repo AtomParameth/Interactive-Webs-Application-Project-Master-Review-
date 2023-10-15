@@ -8,6 +8,7 @@ import CreatePost from "./components/CreatePost";
 import EditPostPage from "./components/EditPostPage";
 import "./App.css";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     path: "/edit-posts/:postId",
     element: <EditPostPage />,
   },
+  
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -53,7 +53,7 @@ textarea {
 }
 
 .buttonPf1 {
-  background-color: rgb(197, 38, 38);
+  background-color: #af4c4c;
   color: #ffffff;
   padding: 10px 20px;
   border: none;
@@ -70,7 +70,7 @@ textarea {
   transition: 0.5s;
 }
 .buttonPf2 {
-  background-color: #1bc421;
+  background-color: #4caf50;
   color: #ffffff;
   padding: 10px 20px;
   border: none;
