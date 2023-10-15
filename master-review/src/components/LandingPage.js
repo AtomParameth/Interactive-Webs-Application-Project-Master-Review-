@@ -150,23 +150,26 @@ function LandingPage() {
         <div className="slider-cont">
           <Carousel
             showThumbs={false}
-            autoPlay={true}
-            transitionTime={3}
+            autoPlay={false}
             infiniteLoop={true}
             showStatus={false} 
             centerMode={true} // enable center mode
             centerSlidePercentage={20} // set center slide width in percentage
             emulateTouch={true} // enable dragging and swiping
           >
-            <div className="poster">
-              <img src="https://lh3.googleusercontent.com/uSgVlbjstu3Cw0lNXkQgBpCK2VHIZpCz_iIB368WHlv3RmsecZus8wW3isyNTcippOpTvNng-nv_7Gy0BQFTa5AbxPIz4YN-=s0" />
-            </div>
-            <div className="poster">
-              <img src="https://m.media-amazon.com/images/I/71lqDylcvGL.jpg" />
-            </div>
-            <div className="poster">
-              <img src="https://npr.brightspotcdn.com/dims4/default/57c05cf/2147483647/strip/true/crop/2000x3000+0+0/resize/880x1320!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F53%2F6a%2Fc91c68c646f383865fb7cb07493a%2F082923-killers-flower-moon-key-art-photo-grid-01.png" />
-            </div>
+          {postFromApi.map((movie) => (
+            <>
+              <div className="poster">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${
+                    movie && movie.backdrop_path
+                  }`}
+                  alt="cover"
+                  className="cover-pic"
+                />
+              </div>
+            </>
+          ))}
           </Carousel>
         </div>
       </div>

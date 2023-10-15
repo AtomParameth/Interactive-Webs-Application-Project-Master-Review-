@@ -25,6 +25,7 @@ h1 {
   font-family: arial;
   border-radius: 1rem;
   gap: 1rem;
+  border-radius: 20px;
 }
 
 .name {

@@ -205,6 +205,17 @@
   align-items: flex-start;
 }
 
+.poster {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: arial;
+  border-radius: 1rem;
+  gap: 1rem;
+  border-radius: 20px;
+}
+
 .carouselPic {
   padding: 55px 0px 0px 0px;
   width: 100%;
