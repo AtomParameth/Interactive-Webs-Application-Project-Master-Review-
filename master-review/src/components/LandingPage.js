@@ -44,6 +44,7 @@ function LandingPage() {
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
+    
   }, []);
 
   const deletePost = async (id) => {
@@ -186,31 +187,35 @@ function LandingPage() {
           </div>
         </div>
       ) : null}
-      <div className="catagories-container">
-        <button
-          className={`catagories-btn ${selectedCategory === "SHOW ALL" ? 'selected' : ''}`}
-          onClick={() => handleCategoryClick("SHOW ALL")}
-        >
-          SHOW ALL
-        </button>
-        <button
-          className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
-          onClick={() => handleCategoryClick("MOVIES")}
-        >
-          MOVIES
-        </button>
-        <button
-          className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
-          onClick={() => handleCategoryClick("SERIES")}
-        >
-          SERIES
-        </button>
-        <button
-          className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
-          onClick={() => handleCategoryClick("BOOKS")}
-        >
-          BOOKS
-        </button>
+      
+      <div className="navBarCatagories">
+        
+        <div className="catagories-container">
+          <button
+            className={`catagories-btn ${selectedCategory === "SHOW ALL" ? 'selected' : ''}`}
+            onClick={() => handleCategoryClick("SHOW ALL")}
+          >
+            SHOW ALL
+          </button>
+          <button
+            className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
+            onClick={() => handleCategoryClick("MOVIES")}
+          >
+            MOVIES
+          </button>
+          <button
+            className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
+            onClick={() => handleCategoryClick("SERIES")}
+          >
+            SERIES
+          </button>
+          <button
+            className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
+            onClick={() => handleCategoryClick("BOOKS")}
+          >
+            BOOKS
+          </button>
+        </div>
       </div>
       <div className="postCT">
         {postList
@@ -236,30 +241,33 @@ function LandingPage() {
           })
           .map((post) => {
             return (
-              <div
-                className="postContainer"
-                id={post.id}
-                key={post.id}
-                ref={(ref) => (post.ref = ref)}
-              >
-                <div className="postUser">{post.user.name}</div>
-                <div className="postTitle">{post.title}</div>
-                <div className="postContent">{post.post}</div>
-                <div className="postButton-Container">
-                  {auth.currentUser &&
-                    post.user.id === auth.currentUser.uid && (
-                      <>
-                        <Link to={`/edit-posts/${post.id}`}>
-                          <button className="editButton">Edit</button>
-                        </Link>
-                        <button
-                          className="deleteButton"
-                          onClick={() => deletePost(post.id)}
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
+              <div className="postPages">
+                <div
+                  className="postContainer"
+                  id={post.id}
+                  key={post.id}
+                  ref={(ref) => (post.ref = ref)}
+                >
+                  
+                  <div className="postUser">{post.user.name}</div>
+                  <div className="postTitle">Title: {post.title}</div>
+                  <div className="postContent">{post.post}</div>
+                  <div className="postButton-Container">
+                    {auth.currentUser &&
+                      post.user.id === auth.currentUser.uid && (
+                        <>
+                          <Link to={`/edit-posts/${post.id}`}>
+                            <button className="editButton">Edit</button>
+                          </Link>
+                          <button
+                            className="deleteButton"
+                            onClick={() => deletePost(post.id)}
+                          >
+                            Delete
+                          </button>
+                        </>
+                      )}
+                  </div>
                 </div>
               </div>
             );
