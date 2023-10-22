@@ -28,6 +28,7 @@ export const postersData = [
     },
     {
         className: "poster",
+        
         id: 2,
         imageUrl: require("./images/poster_one-piece.png"),
         name: "One Piece",

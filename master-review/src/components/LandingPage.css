@@ -151,7 +151,8 @@ html {
   background-color: #ffffff;
   padding-top: 55px;
   top: 0;
-  /* z-index: 1; */
+  
+  z-index: 1;
 }
 .navBarCatagories.sticky {
   background-color: #ba5454;
@@ -178,6 +179,7 @@ html {
   width: 50%;
   background-color: #181818;
   border-radius: 5px;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
 }
 
 .postTitle {
@@ -337,3 +339,20 @@ html {
   margin: 0;
   padding: 10px 0;
 }
+
+.haed-c{
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.postCategory{
+  color: white;
+  margin: 10px 0 0 0px;
+  padding: 15px 30px 0 0px;
+
+  overflow: hidden;
+  font-size: small;
+  text-align: left;
+}
+

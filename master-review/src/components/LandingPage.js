@@ -278,7 +278,13 @@ function LandingPage() {
                   key={post.id}
                   ref={(ref) => (post.ref = ref)}
                 >
-                  <div className="postUser">{post.user.name}</div>
+                  <div className="haed-c">
+                    <div className="postUser">{post.user.name} 
+                    
+                    </div>
+                    <div className="postCategory">Category: {post.category}</div>
+                  </div>
+
                   <div className="postTitle">Title: {post.title}</div>
                   <div className="postContent">{post.post}</div>
                   <div className="postButton-Container">
