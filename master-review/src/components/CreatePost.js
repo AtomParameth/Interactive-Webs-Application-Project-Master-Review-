@@ -5,6 +5,8 @@ import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import "./CreatePost.css";
+import { imageStorage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 function CreatePost() {
   const [title, setTitle] = useState("");
@@ -13,6 +15,7 @@ function CreatePost() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate();
   const postCollectionRef = collection(db, "master-review-posts");
+  const [image, setImage] = useState();
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -43,6 +46,46 @@ function CreatePost() {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
+
+  // const handleImageUpload = async () => {
+
+  //   const imageRef = ref(imageStorage, `master-review/images/${image.name}`)
+
+  //   return uploadBytes(imageRef, image).then((snapshot) => {
+  //     const imageUrl = getDownloadURL(snapshot.ref).then((url) => {
+  //       console.log(url)
+  //     })
+  //   })
+
+  // };
+
+  const handleImageUpload = async () => {
+    const imageRef = ref(imageStorage, `master-review/images/${image.name}`);
+
+    try {
+      await uploadBytes(imageRef, image);
+      const imageUrl = await getDownloadURL(imageRef);
+
+      // Store the imageUrl in the post data
+      await addDoc(postCollectionRef, {
+        title,
+        post,
+        user: { name: user.displayName, id: user.uid, photoURL: user.photoURL },
+        category: selectedCategory,
+        imageUrl, // Add this line to store the image URL
+      });
+
+      // Navigate after successful upload
+      navigate("/");
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  const handlePostClick = async () => {
+    // await createPost();
+    await handleImageUpload();
+  };
   return (
     <div className="createPostPage">
       <div className="cpContainer">
@@ -61,19 +104,25 @@ function CreatePost() {
         <div className="Author">{user && user.displayName}</div>
         <div className="catagories-post">
           <button
-            className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
+            className={`catagories-btn ${
+              selectedCategory === "MOVIES" ? "selected" : ""
+            }`}
             onClick={() => handleCategoryClick("MOVIES")}
           >
             MOVIES
           </button>
           <button
-            className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
+            className={`catagories-btn ${
+              selectedCategory === "SERIES" ? "selected" : ""
+            }`}
             onClick={() => handleCategoryClick("SERIES")}
           >
             SERIES
           </button>
           <button
-            className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
+            className={`catagories-btn ${
+              selectedCategory === "BOOKS" ? "selected" : ""
+            }`}
             onClick={() => handleCategoryClick("BOOKS")}
           >
             BOOKS
@@ -86,6 +135,13 @@ function CreatePost() {
             onChange={(event) => {
               setTitle(event.target.value);
             }}
+          />
+        </div>
+        <div className="uploadImage">
+          <label>Image:</label>
+          <input
+            type="file"
+            onChange={(event) => setImage(event.target.files[0])}
           />
         </div>
         <div className="inputPostt">
@@ -101,7 +157,7 @@ function CreatePost() {
           <button className="buttonPf1" onClick={() => navigate(-1)}>
             Cancel
           </button>
-          <button className="buttonPf2" onClick={createPost}>
+          <button className="buttonPf2" onClick={handlePostClick}>
             Post
           </button>
         </div>

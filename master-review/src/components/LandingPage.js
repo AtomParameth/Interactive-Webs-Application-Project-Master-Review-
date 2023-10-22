@@ -12,7 +12,10 @@ import "./LandingPage.css";
 import cpButton from "./images/composebutton.svg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import gitHubIcon from "./images/github-mark-white.png"
+import gitHubIcon from "./images/github-mark-white.png";
+import { ref,deleteObject } from "firebase/storage";
+import { imageStorage } from "../firebase";
+import firebaseLogo from "./images/firebase-logo-2.png";
 
 function LandingPage() {
   // const poster = postersData.map((poster) => {
@@ -28,7 +31,6 @@ function LandingPage() {
   const [showCompose, setShowCompose] = useState(false);
   const [postList, setPostList] = useState([]);
   const [postFromApi, setPostFromApi] = useState([]);
-
   const postCollectionRef = collection(db, "master-review-posts");
 
   useEffect(() => {
@@ -53,9 +55,14 @@ function LandingPage() {
     getPosts();
   }, []);
 
-  const deletePost = async (id) => {
+  const deletePost = async (id, imageUrl) => {
     const docRef = doc(db, "master-review-posts", id);
     await deleteDoc(docRef);
+
+    if (imageUrl) {
+      const imageRef = ref(imageStorage, imageUrl);
+      await deleteObject(imageRef);
+    }
 
     setPostList((prevPostList) =>
       prevPostList.filter((post) => post.id !== id)
@@ -132,18 +139,25 @@ function LandingPage() {
       }
     }
   };
+
+  // useEffect(() => {
+  //   ref(imageStorage, `master-review/images/${image.name}`).then(img => {
+  //     console.log(img)
+  //   })
+  // }, [])
+
   return (
     <>
       <Navbar onSearch={handleSearch} />
       <div className="carouselPic">
         <Carousel
           showThumbs={false}
-          autoPlay={true}
           transitionTime={3}
           infiniteLoop={true}
           showStatus={false}
-          showArrows={false}
+          showArrows={true}
           renderIndicator={false}
+          autoPlay={true}
         >
           {postFromApi.map((movie) => (
             <>
@@ -279,11 +293,24 @@ function LandingPage() {
                   ref={(ref) => (post.ref = ref)}
                 >
                   <div className="haed-c">
-                    <div className="postUser">{post.user.name} 
-                    
+                    <div className="postUser">
+                      <img
+                        className="user-profile-pic"
+                        src={post.user.photoURL}
+                        alt="User Profile"
+                      />
+                      {post.user.name}
                     </div>
-                    <div className="postCategory">Category: {post.category}</div>
+                    <div className="postCategory">
+                      Category: {post.category}
+                    </div>
                   </div>
+
+                  {post.imageUrl && (
+                    <div className="postImage">
+                      <img src={post.imageUrl} alt="Post Image" />
+                    </div>
+                  )}
 
                   <div className="postTitle">Title: {post.title}</div>
                   <div className="postContent">{post.post}</div>
@@ -296,7 +323,7 @@ function LandingPage() {
                           </Link>
                           <button
                             className="deleteButton"
-                            onClick={() => deletePost(post.id)}
+                            onClick={() => deletePost(post.id, post.imageUrl)}
                           >
                             Delete
                           </button>
@@ -308,11 +335,7 @@ function LandingPage() {
             );
           })}
       </div>
-      <div className="footer">
-        <div className="github-icon-container">
-          <button className="git-btn"><a href="https://github.com/AtomParameth/Interactive-Webs-Application-Project-Master-Review-.git" target="_blank"><img src={gitHubIcon} width={70} height={70}/><p className="git-text">Githubs</p></a></button>
-        </div>
-      </div>
+      <div className="footer"><img width={250} height={100} src={firebaseLogo}/></div>
     </>
   );
 }

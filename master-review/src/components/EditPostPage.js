@@ -3,11 +3,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import "./EditPostPage.css";
+import { imageStorage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 function EditPostPage() {
   const { postId } = useParams();
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
   const [user, setUser] = useState(null);
+  const [image, setImage] = useState(null);
+  const [imageFileName, setImageFileName] = useState("");
+  const [imageUrl, setImageUrl] = useState(""); // State for the image URL
   const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate();
 
@@ -20,6 +26,7 @@ function EditPostPage() {
           const postData = postDoc.data();
           setTitle(postData.title);
           setPost(postData.post);
+          setImageUrl(postData.imageUrl);
         } else {
           // Handle post not found
           console.error("Post not found");
@@ -43,25 +50,36 @@ function EditPostPage() {
     try {
       const postRef = doc(db, "master-review-posts", postId);
 
-      // Check if postRef is defined before proceeding
       if (!postRef) {
         console.error("Post reference is undefined");
         return;
       }
 
-      // You can add additional validation if needed
+      if (image) {
+        const imageRef = ref(
+          imageStorage,
+          `master-review/images/${image.name}`
+        );
+        await uploadBytes(imageRef, image);
+        const imageUrl = await getDownloadURL(imageRef);
 
-      await updateDoc(postRef, {
-        title: title,
-        post: post,
-        category: selectedCategory,
-      });
+        await updateDoc(postRef, {
+          title: title,
+          post: post,
+          category: selectedCategory,
+          imageUrl: imageUrl, // Update the imageUrl
+        });
+      } else {
+        // If no new image is selected, update without imageUrl
+        await updateDoc(postRef, {
+          title: title,
+          post: post,
+          category: selectedCategory,
+        });
+      }
 
-      // Optionally, you can navigate the user back to the post details page
-      // after successful update
       navigate(-1);
     } catch (error) {
-      // Handle errors during the update process
       console.error("Error updating post:", error.message);
     }
   };
@@ -71,6 +89,18 @@ function EditPostPage() {
   };
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+  };
+
+  const handleImageChange = (event) => {
+    const selectedImage = event.target.files[0];
+    setImage(selectedImage);
+
+    // Use a FileReader to read the file name asynchronously
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImageFileName(selectedImage ? selectedImage.name : "No file selected");
+    };
+    reader.readAsDataURL(selectedImage);
   };
 
   return (
@@ -91,28 +121,32 @@ function EditPostPage() {
             <label>Author:</label>
             <label>{user.displayName}</label>
             <label>Category:</label>
-            
-            <div>
 
+            <div>
               <button
-                className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
+                className={`catagories-btn ${
+                  selectedCategory === "MOVIES" ? "selected" : ""
+                }`}
                 onClick={() => handleCategoryClick("MOVIES")}
               >
                 MOVIES
               </button>
               <button
-                className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
+                className={`catagories-btn ${
+                  selectedCategory === "SERIES" ? "selected" : ""
+                }`}
                 onClick={() => handleCategoryClick("SERIES")}
               >
                 SERIES
               </button>
               <button
-                className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
+                className={`catagories-btn ${
+                  selectedCategory === "BOOKS" ? "selected" : ""
+                }`}
                 onClick={() => handleCategoryClick("BOOKS")}
               >
                 BOOKS
               </button>
-
             </div>
 
             <div>
@@ -123,6 +157,23 @@ function EditPostPage() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
+            
+            {imageUrl && (
+              <div className="current-image-edit">
+                <label>Current Image:</label>
+                <img src={imageUrl} alt="Current Image" />
+              </div>
+            )}
+            
+            <div>
+              <label>Change Image:</label>
+              <input
+                type="file"
+                onChange={handleImageChange}
+                // onChange={(event) => setImage(event.target.files[0])}
+              />
+            </div>
+
             <div>
               <label>Post:</label>
               <textarea
