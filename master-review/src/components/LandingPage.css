@@ -4,17 +4,25 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .compose-button-container {
   position: absolute;
-  right: 0%;
+  right: 0;
   top: 100%;
   display: flex;
-  align-items: right;
-  margin: 0 auto;
-  padding: 0;
+  align-items: center;
   cursor: pointer;
-  background-color: transparent;
   justify-content: center;
+}
+
+.compose-button-container.fixed {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  z-index: 5; 
 }
 
 .cpButton-style {
@@ -41,13 +49,16 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 200px;
+  height: 180px;
   background-color: #000000;
   color: white;
   text-align: center;
   margin: 0 auto;
   padding: 0;
   margin-top: 5%;
+  display:flex ;
+  justify-content: center;
+  align-items: center;
 }
 
 .catagories-container {
@@ -299,3 +310,30 @@
   overflow: hidden;
 }
 
+.github-icon-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.git-btn{
+  height: 100%;
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 10px 0;
+  background-color: transparent;
+}
+
+.git-text{
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px 0;
+}

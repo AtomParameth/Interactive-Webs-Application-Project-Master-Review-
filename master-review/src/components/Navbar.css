@@ -5,6 +5,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 nav {
@@ -124,3 +125,4 @@ nav {
   margin: 0 auto;
   width: 100%;
 }
+

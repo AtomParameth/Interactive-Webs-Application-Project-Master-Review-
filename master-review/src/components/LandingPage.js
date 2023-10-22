@@ -12,6 +12,7 @@ import "./LandingPage.css";
 import cpButton from "./images/composebutton.svg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import gitHubIcon from "./images/github-mark-white.png"
 
 function LandingPage() {
   // const poster = postersData.map((poster) => {
@@ -37,6 +38,12 @@ function LandingPage() {
       } else {
         setShowCompose(false);
       }
+
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
     });
 
     const getPosts = async () => {
@@ -44,7 +51,6 @@ function LandingPage() {
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
-    
   }, []);
 
   const deletePost = async (id) => {
@@ -109,6 +115,23 @@ function LandingPage() {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
+
+  const handleScroll = () => {
+    const composeButtonContainer = document.querySelector(
+      ".compose-button-container"
+    );
+
+    if (composeButtonContainer) {
+      const distanceFromTop = composeButtonContainer.offsetTop;
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > distanceFromTop) {
+        composeButtonContainer.classList.add("fixed");
+      } else {
+        composeButtonContainer.classList.remove("fixed");
+      }
+    }
+  };
   return (
     <>
       <Navbar onSearch={handleSearch} />
@@ -152,27 +175,27 @@ function LandingPage() {
       <div className="slide-content">
         <div className="slider-cont">
           <Carousel
-          className="Carousel-C"
+            className="Carousel-C"
             autoPlay={true}
             infiniteLoop={true}
-            showStatus={false} 
+            showStatus={false}
             centerMode={true} // enable center mode
             centerSlidePercentage={30} // set center slide width in percentage
             // emulateTouch={true} // enable dragging and swiping
           >
-          {postFromApi.map((movie) => (
-            <>
-              <div className="poster_t">
-                <img
-                  src={`https://image.tmdb.org/t/p/original/${
-                    movie && movie.backdrop_path
-                  }`}
-                  alt="cover"
-                  className="pic_t"
-                />
-              </div>
-            </>
-          ))}
+            {postFromApi.map((movie) => (
+              <>
+                <div className="poster_t">
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${
+                      movie && movie.backdrop_path
+                    }`}
+                    alt="cover"
+                    className="pic_t"
+                  />
+                </div>
+              </>
+            ))}
           </Carousel>
         </div>
       </div>
@@ -187,30 +210,37 @@ function LandingPage() {
           </div>
         </div>
       ) : null}
-      
+
       <div className="navBarCatagories">
-        
         <div className="catagories-container">
           <button
-            className={`catagories-btn ${selectedCategory === "SHOW ALL" ? 'selected' : ''}`}
+            className={`catagories-btn ${
+              selectedCategory === "SHOW ALL" ? "selected" : ""
+            }`}
             onClick={() => handleCategoryClick("SHOW ALL")}
           >
             SHOW ALL
           </button>
           <button
-            className={`catagories-btn ${selectedCategory === "MOVIES" ? 'selected' : ''}`}
+            className={`catagories-btn ${
+              selectedCategory === "MOVIES" ? "selected" : ""
+            }`}
             onClick={() => handleCategoryClick("MOVIES")}
           >
             MOVIES
           </button>
           <button
-            className={`catagories-btn ${selectedCategory === "SERIES" ? 'selected' : ''}`}
+            className={`catagories-btn ${
+              selectedCategory === "SERIES" ? "selected" : ""
+            }`}
             onClick={() => handleCategoryClick("SERIES")}
           >
             SERIES
           </button>
           <button
-            className={`catagories-btn ${selectedCategory === "BOOKS" ? 'selected' : ''}`}
+            className={`catagories-btn ${
+              selectedCategory === "BOOKS" ? "selected" : ""
+            }`}
             onClick={() => handleCategoryClick("BOOKS")}
           >
             BOOKS
@@ -248,7 +278,6 @@ function LandingPage() {
                   key={post.id}
                   ref={(ref) => (post.ref = ref)}
                 >
-                  
                   <div className="postUser">{post.user.name}</div>
                   <div className="postTitle">Title: {post.title}</div>
                   <div className="postContent">{post.post}</div>
@@ -273,7 +302,11 @@ function LandingPage() {
             );
           })}
       </div>
-      <div className="footer"></div>
+      <div className="footer">
+        <div className="github-icon-container">
+          <button className="git-btn"><a href="https://github.com/AtomParameth/Interactive-Webs-Application-Project-Master-Review-.git" target="_blank"><img src={gitHubIcon} width={70} height={70}/><p className="git-text">Githubs</p></a></button>
+        </div>
+      </div>
     </>
   );
 }
