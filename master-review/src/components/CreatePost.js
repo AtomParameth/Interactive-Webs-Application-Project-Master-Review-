@@ -16,12 +16,21 @@ function CreatePost() {
   const navigate = useNavigate();
   const postCollectionRef = collection(db, "master-review-posts");
   const [image, setImage] = useState();
-
+  const [error, setError] = useState("");
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
     });
   }, []);
+
+  const validateFields = () => {
+    if (!title || !post || !image || !selectedCategory) {
+      setError("Please fill in all required fields.");
+      alert("Please fill in all required fields.");
+      return false;
+    }
+    return true;
+  };
 
   const createPost = async () => {
     await addDoc(postCollectionRef, {
@@ -83,8 +92,10 @@ function CreatePost() {
   };
 
   const handlePostClick = async () => {
-    // await createPost();
-    await handleImageUpload();
+    if (validateFields()) {
+      setError("");
+      handleImageUpload();
+    }
   };
   return (
     <div className="createPostPage">
@@ -102,6 +113,7 @@ function CreatePost() {
         )}
         <label>Author:</label>
         <div className="Author">{user && user.displayName}</div>
+        <label>Category:</label>
         <div className="catagories-post">
           <button
             className={`catagories-btn ${
@@ -128,6 +140,11 @@ function CreatePost() {
             BOOKS
           </button>
         </div>
+        {selectedCategory === "" && (
+          <div className="category-warning">
+            Please select a category<span className="required">*</span>
+          </div>
+        )}
         <div className="inputTitle">
           <label>Title:</label>
           <input
@@ -136,6 +153,11 @@ function CreatePost() {
               setTitle(event.target.value);
             }}
           />
+          {!title && (
+            <div className="required-warning">
+              Please enter a title<span className="required">*</span>
+            </div>
+          )}
         </div>
         <div className="uploadImage">
           <label>Image:</label>
@@ -144,6 +166,11 @@ function CreatePost() {
             onChange={(event) => setImage(event.target.files[0])}
           />
         </div>
+        {!image && (
+          <div className="required-warning">
+            Please select an image<span className="required">*</span>
+          </div>
+        )}
         <div className="inputPostt">
           <label>Post:</label>
           <textarea
@@ -152,7 +179,13 @@ function CreatePost() {
               setPost(event.target.value);
             }}
           />
+          {!post && (
+            <div className="required-warning">
+              Please enter a post<span className="required">*</span>
+            </div>
+          )}
         </div>
+        {error && <div className="error-message">{error}</div>}
         <div className="postButton">
           <button className="buttonPf1" onClick={() => navigate(-1)}>
             Cancel

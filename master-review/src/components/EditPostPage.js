@@ -27,6 +27,7 @@ function EditPostPage() {
           setTitle(postData.title);
           setPost(postData.post);
           setImageUrl(postData.imageUrl);
+          setSelectedCategory(postData.category);
         } else {
           // Handle post not found
           console.error("Post not found");
@@ -121,7 +122,6 @@ function EditPostPage() {
             <label>Author:</label>
             <label>{user.displayName}</label>
             <label>Category:</label>
-
             <div>
               <button
                 className={`catagories-btn ${

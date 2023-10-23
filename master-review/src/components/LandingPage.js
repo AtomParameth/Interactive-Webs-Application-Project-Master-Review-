@@ -13,7 +13,7 @@ import cpButton from "./images/composebutton.svg";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import gitHubIcon from "./images/github-mark-white.png";
-import { ref,deleteObject } from "firebase/storage";
+import { ref, deleteObject } from "firebase/storage";
 import { imageStorage } from "../firebase";
 import firebaseLogo from "./images/firebase-logo-2.png";
 
@@ -151,13 +151,12 @@ function LandingPage() {
       <Navbar onSearch={handleSearch} />
       <div className="carouselPic">
         <Carousel
-          showThumbs={false}
-          transitionTime={3}
+          autoPlay={true}
           infiniteLoop={true}
           showStatus={false}
           showArrows={true}
           renderIndicator={false}
-          autoPlay={true}
+          transitionTime={3}
         >
           {postFromApi.map((movie) => (
             <>
@@ -314,9 +313,12 @@ function LandingPage() {
 
                   <br></br>
                   <div className="postTitle">Title: {post.title}</div>
-                  
+
                   <div className="postContent">
-                    Content:<br></br><br></br>{post.post}</div>
+                    Content:<br></br>
+                    <br></br>
+                    {post.post}
+                  </div>
                   <div className="postButton-Container">
                     {auth.currentUser &&
                       post.user.id === auth.currentUser.uid && (
@@ -338,7 +340,9 @@ function LandingPage() {
             );
           })}
       </div>
-      <div className="footer"><img width={250} height={100} src={firebaseLogo}/></div>
+      <div className="footer">
+        <img width={250} height={100} src={firebaseLogo} />
+      </div>
     </>
   );
 }

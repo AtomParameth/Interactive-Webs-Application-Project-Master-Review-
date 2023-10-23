@@ -47,7 +47,7 @@ textarea {
 .postButton {
   background-color: transparent;
   color: white;
-  padding: 10px 20px;
+  padding: 25px 20px 0 20px;
   border: none;
   border-radius: 20px;
   font-size: 16px;
@@ -127,4 +127,29 @@ textarea {
 .catagories-btn.selected {
   background-color: black;
   color: white;
+}
+
+
+.category-warning {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.required {
+  color: red;
+  margin-left: 2px;
+}
+
+.required-warning{
+  color: red;
+  margin-top: 0 0 10px 0;
+  font-size: 14px;
+}
+
+.error-message{
+  text-align: center;
+  color: red;
+  margin-top: 0 0 10px 0;
+  font-size: 16px;
 }
