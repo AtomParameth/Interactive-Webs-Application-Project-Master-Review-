@@ -312,8 +312,11 @@ function LandingPage() {
                     </div>
                   )}
 
+                  <br></br>
                   <div className="postTitle">Title: {post.title}</div>
-                  <div className="postContent">{post.post}</div>
+                  
+                  <div className="postContent">
+                    Content:<br></br><br></br>{post.post}</div>
                   <div className="postButton-Container">
                     {auth.currentUser &&
                       post.user.id === auth.currentUser.uid && (
