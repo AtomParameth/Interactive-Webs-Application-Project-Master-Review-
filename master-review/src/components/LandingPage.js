@@ -151,6 +151,7 @@ function LandingPage() {
       <Navbar onSearch={handleSearch} />
       <div className="carouselPic">
         <Carousel
+          showThumbs={false}
           autoPlay={true}
           infiniteLoop={true}
           showStatus={false}
